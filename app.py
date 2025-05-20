@@ -72,7 +72,7 @@ class Application():
 
     def frames(self):
         self.fame1 = Frame(self.menu, bd=4, bg="white",
-                                         highlightbackground="blue", highlightthickness=2)               highlightbackground="blue", highlightthickness=2)
+            highlightbackground="blue", highlightthickness=2) 
         self.frame1.place(relwidth=0.45, relheight=0.5, relx=0.48, rely=0.1)
         # self.result.
         # Frame vazio inicial para o gráfico
