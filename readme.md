@@ -1,4 +1,4 @@
-====================
+
 BREVE DESCRIÇÃO DE USO
 ====================
 - Abrir a pasta do projeto incluído todos os itens
