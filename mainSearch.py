@@ -21,7 +21,7 @@ def Gera_Problema(arquivo):
 
 
 # PROGRAMA PRINCIPAL
-nos, grafo = Gera_Problema("sourcelist.txt")
+nos, grafo = Gera_Problema("sourcelist.json")
 
 # print("======== Lista de nós ========\n",nos )
 
