@@ -73,6 +73,7 @@ def mainSearch(self, vem, vai, opcao):
                 print("CAMINHO NÃO ENCONTRADO")
         elif metodo == "PROFUNDIDADE_LIMITADA":
             limite = 5
+            
             path = result.prof_limitada(origem, destino, nos, grafo, limite)
             if path != None:
                 print("\n*****PROFUNDIDADE LIMITADA*****")

@@ -244,7 +244,7 @@ class searchPath(object):
                                 return caminho
 
         return None
-    # ------------------------------------------------------------------------------    # BUSCA BIDIRECIONAL
+    # ----------------------------------------------------  # BUSCA BIDIRECIONAL
 
     def bidirecional(self, inicio, fim, nos, grafo):
         # Primeiro Amplitude"
