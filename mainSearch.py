@@ -79,8 +79,9 @@ def mainSearch(self, vem, vai, opcao):
             print("Custo..: ", len(path)-1)
             return path
         else:
-            print("CAMINHO NÃO ENCONTRADO")
-            return False
+            msgfail = f"NÃO TEM CAMINHO COM O LIMITE DE {limite}"
+            print("NÃO TEM CAMINHO COM O LIMITE DE ", limite)
+            return msgfail
     elif metodo == "APROFUNDAMENTO_ITERATIVO":
         l_max = len(nos)
         path = result.aprof_iterativo(origem, destino, nos, grafo, l_max)

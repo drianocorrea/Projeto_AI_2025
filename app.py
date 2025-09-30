@@ -40,17 +40,20 @@ class Application():
                                         state="readonly", width=20)
         self.dropdownini.place(
             relwidth=0.25, relheight=0.05, relx=0.18, rely=0.1)
-        self.dropdownini.set("Selecione Origem")
+        #self.dropdownini.set("Selecione Origem")
+        self.dropdownini.set("ARAD")
         self.dropdownfim = ttk.Combobox(self.menu, values=choicesobj,
                                         state="readonly", width=20)
         self.dropdownfim.place(
             relwidth=0.25, relheight=0.05, relx=0.18, rely=0.18)
-        self.dropdownfim.set("Selecione Destino")
+        #self.dropdownfim.set("Selecione Destino")
+        self.dropdownfim.set("CRAIOVA")
         self.dropdownmet = ttk.Combobox(self.menu, values=choicesmet,
                                         state="readonly", width=20)
         self.dropdownmet.place(
             relwidth=0.25, relheight=0.05, relx=0.18, rely=0.26)
-        self.dropdownmet.set("Selecione Método")
+        #self.dropdownmet.set("Selecione Método")
+        self.dropdownmet.set("AMPLITUDE")
 
     def botoes(self):
         self.btcalc = Button(self.menu, text="Calcular",
@@ -76,17 +79,17 @@ class Application():
         destino = self.dropdownfim.get()
         calculo = self.dropdownmet.get()
         #mainSearch(self, origem, destino, calculo)
-        print(origem)
-        print(destino)
+        #print(origem)
+        #print(destino)
         #print(calculo)
-        testa = mainSearch(self,calculo)
-        if testa == False:
-            mostra = "Caminho não encontrado"
-            self.result.insert("1.0", mostra)
-        else:
-            mostra = mainSearch(self, origem, destino, calculo)
-            self.result.insert("1.0", mostra)
-        self.custo.insert("1.0", mostra)
+        #print(mainSearch)
+        
+       
+        mostra = mainSearch(self, origem, destino, calculo)
+        comseta = ' '.join(str(valor) + ' ->' for valor in mostra)
+        print(comseta)
+        self.result.insert("1.0", comseta)
+        #self.custo.insert("1.0", mostra)
         self.result.configure(state="disable")  # Enable editing temporarily
         self.custo.configure(state="disable")  # Enable editing temporarily
 
