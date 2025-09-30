@@ -136,7 +136,9 @@ class searchPath(object):
     # ---------------------------------------------
     # BUSCA EM PROFUNDIDADE LIMITADA
 
-    def prof_limitada(self, inicio, fim, nos, grafo, lim):
+    def proflimitada(self, inicio, fim, nos, grafo):
+        # limite estabelecido no calculo ponderado como lim=5
+        lim=5
         # manipular a PILHA para a busca
         l1 = listPath()
 

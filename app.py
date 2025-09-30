@@ -1,7 +1,7 @@
 import tkinter as interface
 from tkinter import *
 from tkinter import ttk
-from mainSearch import *
+from mainSearch import mainSearch
 
 menu = interface.Tk()
 
@@ -75,12 +75,17 @@ class Application():
         origem = self.dropdownini.get()
         destino = self.dropdownfim.get()
         calculo = self.dropdownmet.get()
-        # mainSearch(self, origem, destino, calculo)
+        #mainSearch(self, origem, destino, calculo)
         print(origem)
         print(destino)
-        # print(calculo)
-        mostra = mainSearch(self, origem, destino, calculo)
-        self.result.insert("1.0", mostra)
+        #print(calculo)
+        testa = mainSearch(self,calculo)
+        if testa == False:
+            mostra = "Caminho não encontrado"
+            self.result.insert("1.0", mostra)
+        else:
+            mostra = mainSearch(self, origem, destino, calculo)
+            self.result.insert("1.0", mostra)
         self.custo.insert("1.0", mostra)
         self.result.configure(state="disable")  # Enable editing temporarily
         self.custo.configure(state="disable")  # Enable editing temporarily

@@ -46,55 +46,63 @@ def mainSearch(self, vem, vai, opcao):
     origem = vem
     destino = vai
     metodo = opcao
+    limite = 5
     print(metodo)
 
     if origem not in nos or destino not in nos:
         print("Cidade não está na lista")
+    elif metodo == "AMPLITUDE":
+        path = result.amplitude(origem, destino, nos, grafo)
+        if path != None:
+            # caminho = path
+            # custo = len(path)-1
+            print("\n*****AMPLITUDE*****")
+            print("Caminho: ", path)
+            print("Custo..: ", len(path)-1)
+            return path
+        else:
+            print("CAMINHO NÃO ENCONTRADO")
+    elif metodo == "PROFUNDIDADE":
+        path = result.profundidade(origem, destino, nos, grafo)
+        if path != None:
+            print("\n*****PROFUNDIDADE*****")
+            print("Caminho: ", path)
+            print("Custo..: ", len(path)-1)
+            return path
+        else:
+            print("CAMINHO NÃO ENCONTRADO")
+    elif metodo == "PROFUNDIDADE_LIMITADA":
+        path = result.proflimitada(origem, destino, nos, grafo)
+        if path != None:
+            print("\n*****PROFUNDIDADE LIMITADA*****")
+            print("Caminho: ", path)
+            print("Custo..: ", len(path)-1)
+            return path
+        else:
+            print("CAMINHO NÃO ENCONTRADO")
+            return False
+    elif metodo == "APROFUNDAMENTO_ITERATIVO":
+        l_max = len(nos)
+        path = result.aprof_iterativo(origem, destino, nos, grafo, l_max)
+        if path != None:
+            print("\n*****APROFUNDAMENTO ITERATIVO*****")
+            print("Caminho: ", path)
+            print("Custo..: ", len(path)-1)
+            return path
+        else:
+            print("CAMINHO NÃO ENCONTRADO")
+    elif metodo == "BIDIRECIONAL":
+        path = result.bidirecional(origem, destino, nos, grafo)
+        if path != None:
+            print("\n*****BIDIRECIONAL*****")
+            print("Caminho: ", path)
+            print("Custo..: ", len(path)-1)
+            return path
+        else:
+            print("CAMINHO NÃO ENCONTRADO")
     else:
-        if metodo == "AMPLITUDE":
-            path = result.amplitude(origem, destino, nos, grafo)
-            if path != None:
-                # caminho = path
-                # custo = len(path)-1
-                print("\n*****AMPLITUDE*****")
-                print("Caminho: ", path)
-                print("Custo..: ", len(path)-1)
-                return path
-            else:
-                print("CAMINHO NÃO ENCONTRADO")
-        elif metodo == "PROFUNDIDADE":
-            path = result.profundidade(origem, destino, nos, grafo)
-            if path != None:
-                print("\n*****PROFUNDIDADE*****")
-                print("Caminho: ", path)
-                print("Custo..: ", len(path)-1)
-                return path
-            else:
-                print("CAMINHO NÃO ENCONTRADO")
-        elif metodo == "PROFUNDIDADE_LIMITADA":
-            limite = 5
-            
-            path = result.prof_limitada(origem, destino, nos, grafo, limite)
-            if path != None:
-                print("\n*****PROFUNDIDADE LIMITADA*****")
-                print("Caminho: ", path)
-                print("Custo..: ", len(path)-1)
-            else:
-                print("CAMINHO NÃO ENCONTRADO")
-        elif metodo == "APROFUNDAMENTO ITERATIVO":
-            l_max = len(nos)
-            path = result.aprof_iterativo(origem, destino, nos, grafo, l_max)
-            if path != None:
-                print("\n*****APROFUNDAMENTO ITERATIVO*****")
-                print("Caminho: ", path)
-                print("Custo..: ", len(path)-1)
-            else:
-                print("CAMINHO NÃO ENCONTRADO")
-        elif metodo == "BIDIRECIONAL":
-            path = result.bidirecional(origem, destino, nos, grafo)
-            if path != None:
-                print("\n*****BIDIRECIONAL*****")
-                print("Caminho: ", path)
-                print("Custo..: ", len(path)-1)
-            else:
-                print("CAMINHO NÃO ENCONTRADO")
+        print("CAMINHO NÃO ENCONTRADO")
+
+
+
+
