@@ -8,13 +8,28 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 menu = interface.Tk()
 
-choicesorig = ['ARAD', 'BUCARESTE', 'CRAIOVA', 'DOBRETA', 'EFORIE', 'FAGARAS', 'GIORGIU', 'HIRSOVA', 'IASI', 'LUGOJ',
-               'MEHADIA', 'NEAMT', 'ORADEA', 'PITESTI', 'RIMNICUVILCEA', 'SIBIU', 'TIMISOARA', 'URZICENI', 'VASLUI', 'ZERIND']
-choicesobj = ['ARAD', 'BUCARESTE', 'CRAIOVA', 'DOBRETA', 'EFORIE', 'FAGARAS', 'GIORGIU', 'HIRSOVA', 'IASI', 'LUGOJ',
-              'MEHADIA', 'NEAMT', 'ORADEA', 'PITESTI', 'RIMNICUVILCEA', 'SIBIU', 'TIMISOARA', 'URZICENI', 'VASLUI', 'ZERIND']
-choicesmet = ['AMPLITUDE', 'PROFUNDIDADE', 'PROFUNDIDADE_LIMITADA',
-              'APROFUNDAMENTO_ITERATIVO', 'BIDIRECIONAL']
+# Reagentes iniciais disponíveis para seleção
+choicesorig = [
+    'ETANOL',           # Álcool que pode ser usado como reagente
+    'ACIDO_ACETICO',    # Ácido que pode ser usado como reagente  
+    'ACIDO_SULFURICO',  # Catalisador que pode ser usado como reagente
+    'ETANOL+ACIDO_ACETICO'  # Combinação inicial de reagentes
+]
 
+# Produtos finais que podem ser produzidos
+choicesobj = [
+    'ACETATO_ETILA',    # Éster produzido a partir de etanol e ácido acético
+    'POLIESTIRENO'      # Plástico produzido via polimerização
+]
+
+# Algoritmos de busca para encontrar rotas químicas
+choicesmet = [
+    'AMPLITUDE',               # Busca em largura - explora por níveis
+    'PROFUNDIDADE',            # Busca em profundidade - explora ramos
+    'PROFUNDIDADE_LIMITADA',   # Busca em profundidade com limite
+    'APROFUNDAMENTO_ITERATIVO', # Busca que aumenta limite gradualmente
+    'BIDIRECIONAL'             # Busca simultânea do início e fim
+]
 
 class Application():
     def __init__(self):
@@ -34,7 +49,7 @@ class Application():
         self.menu.geometry("640x480")
         self.menu.configure(bg="lightblue")
         self.menu.resizable(False, False)
-        self.label = Label(self.menu, text="Bem-vindo ao meu aplicativo!",
+        self.label = Label(self.menu, text="Sistema de Otimização de Rotas Químicas",
                            bg="lightblue", font=("Arial", 14))
         self.label.pack(pady=15)
         # Frame para o grafo (sem sobreposição branca)
@@ -42,31 +57,31 @@ class Application():
         self.grafo_frame.place(relwidth=0.48, relheight=0.65, relx=0.48, rely=0.1)
 
     def combobox(self):
+        Label(self.menu, text="REAGENTES DISPONÍVEIS:", 
+              bg="lightblue", font=("Arial", 10)).place(relx=0.18, rely=0.08)
         self.dropdownini = ttk.Combobox(self.menu, values=choicesorig,
                                         state="readonly", width=20)
         self.dropdownini.place(
-            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.1)
-        #self.dropdownini.set("Selecione Origem")
-        self.dropdownini.set("ARAD")
+            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.15)
+        self.dropdownini.set("Selecione Reagentes")
         self.dropdownfim = ttk.Combobox(self.menu, values=choicesobj,
                                         state="readonly", width=20)
         self.dropdownfim.place(
-            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.18)
-        #self.dropdownfim.set("Selecione Destino")
-        self.dropdownfim.set("CRAIOVA")
+            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.23)
+        self.dropdownfim.set("Selecione Produto")
         self.dropdownmet = ttk.Combobox(self.menu, values=choicesmet,
                                         state="readonly", width=20)
         self.dropdownmet.place(
-            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.26)
-        #self.dropdownmet.set("Selecione Método")
-        self.dropdownmet.set("AMPLITUDE")
+            relwidth=0.35, relheight=0.05, relx=0.06, rely=0.31)
+        self.dropdownmet.set("Selecione Método")
+        
 
     def botoes(self):
-        self.btcalc = Button(self.menu, text="Calcular",
-                             width=20, bg="blue", fg="white", command=self.valororig)
+        self.btcalc = Button(self.menu, text="ROTA QUÍMICA",
+                             width=20, bg="green", fg="white", command=self.valororig)
         self.btcalc.config(font=("Arial", 12, "bold"))
         self.btcalc.place(
-            relwidth=0.25, relheight=0.08, relx=0.16, rely=0.4)
+            relwidth=0.25, relheight=0.10, relx=0.16, rely=0.4)
         self.btcalc.config(state=NORMAL)
 
     def label_resultado(self):
